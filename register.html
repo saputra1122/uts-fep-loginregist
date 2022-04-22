@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>REGISTER</title>
+    <title>FORM REGISTER</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -25,17 +25,41 @@
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        .ignielPelangi {
+        background: linear-gradient(45deg, #f22613, #5868ec, #f54e80, #f7ca18);
+        background-size: 500% 500%;
+        -webkit-animation: ignielGradient 12s ease infinite;
+        -moz-animation: ignielGradient 12s ease infinite;
+        animation: ignielGradient 12s ease infinite;
+        }
+        @-webkit-keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @-moz-keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+    </style>
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper ignielPelangi p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
-                    <form method="POST" id="formRegist">
+                    <form action="https://lanakomunika.politekniklp3i-tasikmalaya.ac.id/api/register" method="POST" id="formRegist">
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <label class="label">Nama Lengkap</label>
                                     <input class="input--style-4" type="text" name="name" id="name">
@@ -43,7 +67,7 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-4">
                                 <div class="input-group">
                                     <label class="label">Username</label>
                                     <input class="input--style-4" type="text" name="username" id="username">
@@ -82,6 +106,7 @@
                         </div>
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="button" id="btnDaftar" name="register">Register</button>
+                            <a href="login.html">Page Login</a>
                         </div>
                     </form>
                 </div>
@@ -129,75 +154,130 @@
             function validasi() {
             var nama = $('#name').val();
             var username = $('#username').val();
-            var pass = $('#password').val();
+            var password = $('#password').val();
             var plan = $('#plan').val();
             var bayar = $('#bayar').val();
 
-            if (nama != "" && username != "" &&  pass!="" &&  plan!="" &&  bayar!="" ) {
-                daftar(nama,username,pass,plan,bayar);
+            if (nama != "" && username != "" &&  password!="" &&  plan!="" &&  bayar!="" ) {
+                daftar(nama,username,password,plan,bayar);
                 // console.log('user:' + user + '=pass:' + pass);
             }else{
                 
             }
             }
         
-            function daftar(nama,username,pass,plan,bayar){
+            // function daftar(nama,username,pass,plan,bayar){
             
 
-            $.ajax({
-            type : 'POST',
-            url : 'https://lanakomunika.politekniklp3i-tasikmalaya.ac.id/api/register',//Memanggil Endpoint
-            async : false,
-            dataType : 'json',
-            data : {
-                name:nama,
-                username:username,
-                password:pass,
-                plan:plan,
-                pembayaran:bayar
-            },
-            success:function(response){
+            // $.ajax({
+            // type : 'POST',
+            // url : 'https://lanakomunika.politekniklp3i-tasikmalaya.ac.id/api/register',//Memanggil Endpoint
+            // async : false,
+            // dataType : 'json',
+            // data : {
+            //     name:nama,
+            //     username:username,
+            //     password:pass,
+            //     plan:plan,
+            //     pembayaran:bayar
+            // },
+            // success:function(response){
+            // if (response.status == "200") {
+        
+            // Swal.fire({
+            // type: 'success',
+            // title: 'Daftar Berhasil!',
+            // text: 'Tunggu sejenak',
+            // timer: 1000,
+            // showCancelButton: false,
+            // showConfirmButton: false
+            // })
+            // .then (function() {
+            //     window.location.href = "https://lanakomunika.politekniklp3i-tasikmalaya.ac.id";
+            // });
+            //     } else {
+        
+            // Swal.fire({
+            // type: 'error',
+            // title: 'Daftar Gagal!',
+            // text: 'silahkan coba lagi!'
+            // });
+        
+            // }
+        
+            // console.log(response);
+        
+            // },
+        
+            // error:function(response){
+        
+            // Swal.fire({
+            // type: 'error',
+            // title: 'Opps!',
+            // text: 'server error!'
+            // });
+        
+            // console.log(response);
+        
+            // }
+        
+            // });
+            // }
+ // data : {
+            //     name:nama,
+            //     username:username,
+            //     password:pass,
+            //     plan:plan,
+            //     pembayaran:bayar
+            // },
+            function daftar(nama,username,pass,plan,bayar) {
+        
+        $.ajax({
+          type: "POST",
+          url: "https://lanakomunika.politekniklp3i-tasikmalaya.ac.id/api/register", //Memanggil Endpoint
+          async: false,
+          dataType: "json",
+          data: {
+            name:nama,
+            username:username,
+            password:pass,
+            plan:plan,
+            bayar:bayar
+          },
+          success: function (response) {
             if (response.status == "200") {
-        
-            Swal.fire({
-            type: 'success',
-            title: 'Daftar Berhasil!',
-            text: 'Tunggu sejenak',
-            timer: 1000,
-            showCancelButton: false,
-            showConfirmButton: false
-            })
-            .then (function() {
-                window.location.href = "https://lanakomunika.politekniklp3i-tasikmalaya.ac.id";
-            });
-                } else {
-        
-            Swal.fire({
-            type: 'error',
-            title: 'Daftar Gagal!',
-            text: 'silahkan coba lagi!'
-            });
-        
+              Swal.fire({
+                icon: "success",
+                title: "Pendaftaran Berhasil!",
+                text: "Tunggu sebentar...",
+                timer: 3000,
+                showConfirmButton: false,
+              }).then(function () {
+                window.location.href = "./login.html";
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Pendaftaran Gagal!",
+                text: "Silahkan untuk mencoba daftar kembali.",
+                timer: 3000,
+                showConfirmButton: false,
+              });
             }
-        
             console.log(response);
-        
-            },
-        
-            error:function(response){
-        
-            Swal.fire({
-            type: 'error',
-            title: 'Opps!',
-            text: 'server error!'
-            });
-        
-            console.log(response);
-        
-            }
-        
-            });
-            }
+          },
+          // error: function (response) {
+          //   Swal.fire({
+          //     icon: "error",
+          //     title: "Ups! 🤷‍♂️",
+          //     text: "Server error!",
+          //     timer: 3000,
+          //     showConfirmButton: false,
+          //   });
+          //   console.log(response);
+          // },
+        });
+      }
             
             $('#btnDaftar').on('click',function(){
             var dataForm = $('#formRegist').serialize();
