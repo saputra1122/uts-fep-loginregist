@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>LOGIN</title>
+    <title>FORM LOGIN</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -25,10 +25,34 @@
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        .ignielPelangi {
+        background: linear-gradient(45deg, #f22613, #5868ec, #f54e80, #f7ca18);
+        background-size: 500% 500%;
+        -webkit-animation: ignielGradient 12s ease infinite;
+        -moz-animation: ignielGradient 12s ease infinite;
+        animation: ignielGradient 12s ease infinite;
+        }
+        @-webkit-keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @-moz-keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @keyframes ignielGradient {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+    </style>
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper ignielPelangi p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -47,8 +71,8 @@
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <p><a href="register.html">Create an account</a></p>
                             <button class="btn btn--radius-2 btn--blue" type="button" id="login">Login</button>
+                            <p><a href="register.html">Create an account</a></p>
                         </div>
                     </form>
                 </div>
