@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>REGISTER</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST" id="formRegist">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nama Lengkap</label>
+                                    <input class="input--style-4" type="text" name="name" id="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Username</label>
+                                    <input class="input--style-4" type="text" name="username" id="username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input class="input--style-4" type="password" name="password" id="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">PLAN</label>
+                            <div class="rs-select2 js-select-simple select--no-search" >
+                                <select name="plan" id="plan">
+                                    <option disabled="disabled" selected="selected">---</option>
+                                    <option value="1">Free</option>
+                                    <option value="2">Premium</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group" id="pay">
+                            <label class="label">Pembayaran</label>
+                            <div class="rs-select2 js-select-simple select--no-search" >
+                                <select name="bayar" id="bayar">
+                                    <option disabled="disabled" selected="selected">---</option>
+                                    <option value="1">OVO</option>
+                                    <option value="2">Gopay</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="button" id="btnDaftar" name="register">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+    <!-- sweet alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+    <script>
+        $(document).ready(function() {
+        $("#pay").hide();
+      
+        $("#plan").change(function(){
+          var _this = $(this);
+          if (_this.val() == 2){
+            $("#pay").show();
+      
+          }else{
+            $("#pay").hide();
+          }
+        });
+       });
+    </script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+
+            $('#btnDaftar').on('click', function(){
+                validasi();
+            });
+
+            function validasi() {
+            var nama = $('#name').val();
+            var username = $('#username').val();
+            var pass = $('#password').val();
+            var plan = $('#plan').val();
+            var bayar = $('#bayar').val();
+
+            if (nama != "" && username != "" &&  pass!="" &&  plan!="" &&  bayar!="" ) {
+                daftar(nama,username,pass,plan,bayar);
+                // console.log('user:' + user + '=pass:' + pass);
+            }else{
+                
+            }
+            }
+        
+            function daftar(nama,username,pass,plan,bayar){
+            
+
+            $.ajax({
+            type : 'POST',
+            url : 'https://lanakomunika.politekniklp3i-tasikmalaya.ac.id/api/register',//Memanggil Endpoint
+            async : false,
+            dataType : 'json',
+            data : {
+                name:nama,
+                username:username,
+                password:pass,
+                plan:plan,
+                pembayaran:bayar
+            },
+            success:function(response){
+            if (response.status == "200") {
+        
+            Swal.fire({
+            type: 'success',
+            title: 'Daftar Berhasil!',
+            text: 'Tunggu sejenak',
+            timer: 1000,
+            showCancelButton: false,
+            showConfirmButton: false
+            })
+            .then (function() {
+                window.location.href = "https://lanakomunika.politekniklp3i-tasikmalaya.ac.id";
+            });
+                } else {
+        
+            Swal.fire({
+            type: 'error',
+            title: 'Daftar Gagal!',
+            text: 'silahkan coba lagi!'
+            });
+        
+            }
+        
+            console.log(response);
+        
+            },
+        
+            error:function(response){
+        
+            Swal.fire({
+            type: 'error',
+            title: 'Opps!',
+            text: 'server error!'
+            });
+        
+            console.log(response);
+        
+            }
+        
+            });
+            }
+            
+            $('#btnDaftar').on('click',function(){
+            var dataForm = $('#formRegist').serialize();
+            daftar(dataForm);
+            });
+            });
+            
+    </script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
